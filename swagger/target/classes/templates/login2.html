@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>Login</h1>
+
+<form id="myForm">
+  <label for="userId">User ID:</label>
+  <input type="text" id="userId" name="userId">
+  <button type="button" onclick="sendData()">Submit</button>
+</form>
+
+<script>
+function sendData() {
+  // 获取用户输入的 ID
+  var userId = document.getElementById('userId').value;
+
+  // 发送 Ajax 请求到后端的 Controller
+  $.ajax({
+    url: '/login2',
+    type: 'POST',
+    data: JSON.stringify({ userId: userId }),
+    contentType: 'application/json',
+    success: function(data) {
+      // 处理返回的数据
+      console.log(data);
+    },
+    error: function(error) {
+      // 处理错误
+      console.error(error);
+    }
+  });
+}
+</script>
+</body>
+</html>
